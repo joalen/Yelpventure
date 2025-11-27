@@ -25,7 +25,8 @@ if config_env() == :dev do
 end
 
 config :myapp,
-    yelp_api_key: System.get_env("YELP_API_KEY")
+    yelp_api_key: System.get_env("YELP_API_KEY"),
+    hf_api_token: System.get_env("HF_API_TOKEN")
 
 if config_env() == :prod do
   database_url =
