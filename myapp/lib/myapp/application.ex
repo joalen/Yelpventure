@@ -7,15 +7,6 @@ defmodule Myapp.Application do
 
   @impl true
   def start(_type, _args) do
-    project_root = File.cwd!()
-    dotenv_path = Path.join(project_root, ".env")
-
-    if File.exists?(dotenv_path) do
-      Dotenvy.source!(dotenv_path)
-    else
-      IO.puts(".env file not found at #{dotenv_path}, proceeding without loading environment variables from it.")
-    end
-
     children = [
       MyappWeb.Telemetry,
       # Myapp.Repo,

@@ -1,5 +1,4 @@
 import Config
-import Dotenvy
 
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
@@ -22,7 +21,7 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :dev do
-  Dotenvy.source!([".env", System.get_env()])
+  Nvir.dotenv!(".env")
 end
 
 config :myapp,

@@ -67,7 +67,7 @@ defmodule Myapp.MixProject do
       {:bandit, "~> 1.5"},
       {:finch, "~> 0.16"},
       {:jason, "~> 1.4"},
-      {:dotenvy, "~> 1.0.0"}
+      {:nvir, "~> 0.13"}
     ]
   end
 
