@@ -43,7 +43,8 @@ defmodule LocalQuest.Agent.QwenClient do
 
     end
 
-    def generate_challenge(business_data) do
-        # after we hit Yelp AI API's payload, take that and create an engaging challenge that the user can play
+    def generate_challenges(business_data) do
+        # This gets invoked maybe once in a while to generate new challenges based on new business data from Yelp
+        # from there, Qwen will return new challenges to be stored in a central master database
     end
 end
