@@ -42,8 +42,6 @@ defmodule Myapp.MixProject do
     [
       {:phoenix, "~> 1.8.1"},
       {:phoenix_ecto, "~> 4.5"},
-      {:ecto_sql, "~> 3.13"},
-      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.1.0"},
@@ -68,7 +66,9 @@ defmodule Myapp.MixProject do
       {:finch, "~> 0.16"},
       {:jason, "~> 1.4"},
       {:nvir, "~> 0.13"},
-      {:mdex, "~> 0.10.0"}
+      {:mdex, "~> 0.10.0"},
+      {:mongodb_driver, "~> 1.0"},
+      {:certifi, "~> 2.15"}
     ]
   end
 

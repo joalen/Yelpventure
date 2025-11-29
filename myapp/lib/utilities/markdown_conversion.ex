@@ -29,4 +29,15 @@ defmodule Utilities.MarkdownConversion do
 
   # Fallback for anything else
   defp flatten_text(_), do: ""
+
+  def extract_json(text) do
+    case Regex.run(~r/```json\s*\n(.*?)\n```/s, text) do
+      [_, json] -> String.trim(json)
+      nil ->
+        case Regex.run(~r/```\s*\n(.*?)\n```/s, text) do
+          [_, json] -> String.trim(json)
+          nil -> text
+        end
+    end
+  end
 end
