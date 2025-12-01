@@ -67,33 +67,6 @@ defmodule LocalQuest.Agent.LLAMAClient do
       end
     end
 
-    def generate_quest(conn, user) do
-      base_prompt = Utilities.MarkdownConversion.plain_text("priv/static/assets/prompts.md")
-
-      challenges = Mongo.aggregate(conn, "challenges", [
-        %{"$sample" => %{"size" => 5}}
-      ]) |> Enum.to_list()
-
-      full_prompt = """
-      #{base_prompt}
-
-      ---
-
-      ## GENERATE A QUEST FOR THIS USER:
-
-      **User Data:**
-      #{Jason.encode!(user, pretty: true)}
-
-      **Available Challenges:**
-      #{Jason.encode!(challenges, pretty: true)}
-
-      Pick the best challenge and personalize it.
-      """
-
-      LLAMAClient.generate(full_prompt) |> Jason.decode!()
-    end
-
-
     def generate_challenges(conn) do
       base_prompt = Utilities.MarkdownConversion.plain_text("priv/static/assets/prompts.md")
 
