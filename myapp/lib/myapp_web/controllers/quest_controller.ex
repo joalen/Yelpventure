@@ -13,6 +13,14 @@ defmodule LocalQuestWeb.QuestController do
     json(conn, %{quests: quests})
   end
 
+  def locations(conn, %{"challenge_id" => challenge_id, "lat" => lat, "lng" => lng}) do
+    challenge = Mongo.find_one(get_mongo(conn), "challenges", %{"_id" => challenge_id})
+    {:ok, yelp_response} = LocalQuest.Yelp.Client.retrieve_query(lat, lng, challenge["description"])
+
+    locations = LocalQuest.Yelp.Parser.extract_businesses(yelp_response)
+    json(conn, %{locations: locations})
+  end
+
   def complete(conn, %{"quest_id" => quest_id, "user_id" => user_id}) do
     case QuestContext.complete_quest(get_mongo(conn), user_id, quest_id) do
       {:ok, result} -> json(conn, result)

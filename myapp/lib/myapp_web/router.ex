@@ -13,4 +13,7 @@ scope "/api", LocalQuestWeb do
 
   # Leaderboard endpoint
   get "/leaderboard", LeaderboardController, :index
+
+  # locations endpoint (helps populate "pins" to put on the map)
+  get "/quests/locations", QuestController, :locations
 end
