@@ -1,5 +1,5 @@
-defmodule LocalQuestWeb.QuestController do
-  use LocalQuestWeb, :controller
+defmodule MyappWeb.QuestController do
+  use MyappWeb, :controller
   alias LocalQuest.{Quest, QuestContext}
 
   def available(conn, %{"user_id" => user_id}) do

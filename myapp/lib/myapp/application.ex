@@ -11,7 +11,6 @@ defmodule Myapp.Application do
     mongo_url = System.get_env("MONGO_DB_URL")
     mongo_name = System.get_env("MONGO_DB_NAME")
     children = [
-      MyappWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:myapp, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Myapp.PubSub},
       {Finch, name: LocalQuestFinch},

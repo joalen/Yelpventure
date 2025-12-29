@@ -5,8 +5,7 @@ defmodule LocalQuest.Agent.LLAMAClient do
     def api_key do
         Application.get_env(:myapp, :groq_api_key) ||
             raise """
-            Environment variable GROQ_API_KEY is missing!
-            Make sure it is set in your shell or in a .env file.
+            Environment variable GROQ_API_KEY not set, make sure to add this!
             """
     end
 

@@ -1,5 +1,5 @@
-defmodule LocalQuestWeb.LeaderboardController do
-  use LocalQuestWeb, :controller
+defmodule MyappWeb.LeaderboardController do
+  use MyappWeb, :controller
   alias LocalQuest.Player
 
   def index(conn, params) do

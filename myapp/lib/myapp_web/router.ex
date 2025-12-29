@@ -1,4 +1,11 @@
-scope "/api", LocalQuestWeb do
+defmodule MyappWeb.Router do
+  use MyappWeb, :router
+
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  scope "/api", MyappWeb do
   pipe_through :api
 
   # Player endpoints
@@ -16,4 +23,5 @@ scope "/api", LocalQuestWeb do
 
   # locations endpoint (helps populate "pins" to put on the map)
   get "/quests/locations", QuestController, :locations
+  end
 end

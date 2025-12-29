@@ -8,20 +8,23 @@ defmodule LocalQuest.Quest do
   @collection "challenges"
 
   @doc "Fetches all available challenges the user can do from the master list"
-  def list_available(conn, user_id) do
-    {:ok, player} = LocalQuest.Player.get(conn, user_id)
+  def list_available(user_id) do
+    {:ok, player} = LocalQuest.Player.get(user_id)
     completed_ids = player["completed_quests"]
 
     # Get all challenges not yet completed
-    Mongo.find(conn, @collection, %{
+    Mongo.find(:mongo, @collection, %{
       "_id" => %{"$nin" => completed_ids}
     })
     |> Enum.to_list()
   end
 
+  def retrieve_all_locations(quest_id, lattitude, longitude) do
+
+  end
   @doc "Fetches a specific quest by its ID (id being MongoDB's auto-populated one) from the master list"
-  def get(conn, quest_id) do
-    case Mongo.find_one(conn, @collection, %{"_id" => quest_id}) do
+  def get(quest_id) do
+    case Mongo.find_one(:mongo, @collection, %{"_id" => quest_id}) do
       nil -> {:error, :not_found}
       quest -> {:ok, quest}
     end
