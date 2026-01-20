@@ -51,4 +51,6 @@ defmodule MyappWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug MyappWeb.Router
+
+  plug Corsica, origins: "*", allow_headers: ["content-type"]
 end

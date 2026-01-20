@@ -9,5 +9,5 @@ defmodule LocalQuestWeb.LeaderboardController do
     json(conn, %{leaderboard: leaderboard})
   end
 
-  defp get_mongo(_conn), do: Process.get(:mongo_conn)
+  defp get_mongo(conn), do: conn.assigns.mongo
 end

@@ -22,12 +22,12 @@ defmodule LocalQuestWeb.QuestController do
   end
 
   def complete(conn, %{"quest_id" => quest_id, "user_id" => user_id}) do
-    case QuestContext.complete_quest(get_mongo(conn), user_id, quest_id) do
+    {:ok, object_id} = BSON.ObjectId.decode(quest_id)
+    case QuestContext.complete_quest(get_mongo(conn), user_id, object_id) do
       {:ok, result} -> json(conn, result)
-      {:error, reason} ->
-        conn |> put_status(400) |> json(%{error: reason})
+      {:error, reason} -> conn |> put_status(400) |> json(%{error: reason})
     end
   end
 
-  defp get_mongo(_conn), do: Process.get(:mongo_conn)
+  defp get_mongo(conn), do: conn.assigns.mongo
 end

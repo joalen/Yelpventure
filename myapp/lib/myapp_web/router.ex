@@ -16,4 +16,16 @@ scope "/api", LocalQuestWeb do
 
   # locations endpoint (helps populate "pins" to put on the map)
   get "/quests/locations", QuestController, :locations
+
+  # generating points
+  post "/quests/generate", QuestController, :generate
+end
+
+pipeline :api do
+  plug :accepts, ["json"]
+  plug :put_mongo
+end
+
+defp put_mongo(conn, _opts) do
+  assign(conn, :mongo, :mongo)
 end
